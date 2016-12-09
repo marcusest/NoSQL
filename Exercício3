@@ -1,0 +1,12 @@
+
+db.Vocabulary.find({"text":"feliz"}).explain({"executionStats":1})
+//número total de documentos escaneados: 291214
+//tempo total gasto pela consulta: 113
+
+
+db.Vocabulary.createIndex({"text":1})
+
+db.Vocabulary.find({"text":"feliz"}).explain({"executionStats":1})
+
+//número total de documentos escaneados: 1
+//tempo total gasto pela consulta: 8
