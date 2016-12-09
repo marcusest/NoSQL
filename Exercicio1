@@ -1,0 +1,30 @@
+##Insert dos alunos
+db.Alunos.insert({
+               "name": "Antonio Lato",
+               "data_nascimento":ISODate("1978-15-03T00:00:00Z"),
+               "disciplina":"NoSQL",
+               "nota":0 })
+
+db.Alunos.insert({
+               "name": "Marcus Thadeu",
+               "data_nascimento":ISODate("1985-19-06T00:00:00Z"),
+               "disciplina":"NoSQL",
+               "nota":0 })
+
+db.Alunos.insert({
+               "name": "Cesar Sampaio",
+               "data_nascimento":ISODate("1990-10-02T00:00:00Z"),
+               "disciplina":"NoSQL",
+               "nota":0 })
+
+#Menor aluno
+db.Alunos.find().sort({data_nascimento: 1}).limit(1)
+
+#atualiza nota para 5
+
+db.Alunos.update({"name":"Marcus Thadeu"}, {$set:{nota:5}})
+
+
+#apaga aluno
+
+db.Alunos.remove({"name":/Antonio Lato/,})
