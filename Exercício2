@@ -1,0 +1,31 @@
+
+//Contar o número de palavras
+db.Vocabulary.mapReduce(
+			function() {emit(this.text, 1);},
+			function(key,value) {return Array.sum(value)}, //reduce
+			{
+			query: {$or: [{"text" : /ar$/},{"text" : /er$/},{"text" : /ir$/},
+				      {"text" : /or$/},{"text" : /ur$/}]},
+			out: "total"
+			}
+			)
+
+
+
+//Contar o número de letras
+
+db.Vocabulary.mapReduce(
+			function() {
+			if (this.text == undefined) return;
+			
+			for (var letra =0; letra < this.text.length; letra ++)
+			{
+			emit(this.text[letra],1);
+			}
+				   }, //MAP
+			function(key,value) {return Array.sum(value)}, //red
+				{
+				 query: {},
+				 out : "Total de letras"
+				}
+				)
